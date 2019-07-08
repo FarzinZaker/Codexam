@@ -33,10 +33,10 @@ grails:
       accept:
         header:
           userAgents:
-          - Gecko
-          - WebKit
-          - Presto
-          - Trident
+            - Gecko
+            - WebKit
+            - Presto
+            - Trident
     types:
       all: '*/*'
       atom: application/atom+xml
@@ -44,22 +44,22 @@ grails:
       csv: text/csv
       form: application/x-www-form-urlencoded
       html:
-      - text/html
-      - application/xhtml+xml
+        - text/html
+        - application/xhtml+xml
       js: text/javascript
       json:
-      - application/json
-      - text/json
+        - application/json
+        - text/json
       multipartForm: multipart/form-data
       pdf: application/pdf
       rss: application/rss+xml
       text: text/plain
       hal:
-      - application/hal+json
-      - application/hal+xml
+        - application/hal+json
+        - application/hal+xml
       xml:
-      - text/xml
-      - application/xml
+        - text/xml
+        - application/xml
   urlmapping:
     cache:
       maxsize: 1000
@@ -82,6 +82,8 @@ endpoints:
   jmx:
     unique-names: true
 
+server:
+  port: 70
 ---
 hibernate:
   cache:
@@ -91,22 +93,21 @@ hibernate:
 dataSource:
   pooled: true
   jmxExport: true
-  driverClassName: org.h2.Driver
-  username: sa
-  password: ''
+  driverClassName: org.postgresql.Driver
+  username: postgres
+  password: postgres
 
 environments:
   development:
     dataSource:
       dbCreate: update
-      url: jdbc:mysql://localhost/codxam?useUnicode:true&characterEncoding:UTF-8
-      username: root
-      password:
       pooled: true
-      logSql: false
-      driverClassName: com.mysql.jdbc.Driver
-      dialect: org.hibernate.dialect.MySQL5Dialect
-      configClass: eshop.DomainConfiguration
+      jmxExport: true
+      url: "jdbc:postgresql://localhost:5432/codexam"
+      driverClassName: org.postgresql.Driver
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      username: postgres
+      password: Salam123
       properties:
         maxActive: -1
         minEvictableIdleTimeMillis: 1800000

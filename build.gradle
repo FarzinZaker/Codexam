@@ -28,6 +28,8 @@ apply plugin: "org.grails.grails-gsp"
 repositories {
     mavenLocal()
     maven { url "https://repo.grails.org/grails/core" }
+    maven { url "https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/" }
+    maven { url "http://www.mygrid.org.uk/maven/repository/" }
 }
 
 dependencies {
@@ -65,7 +67,9 @@ dependencies {
 
     runtime 'com.bertramlabs.plugins:less-asset-pipeline:3.0.7'
 
-    runtime 'mysql:mysql-connector-java:5.1.36'
+//    runtime 'mysql:mysql-connector-java:5.1.36'
+    runtime "org.postgresql:postgresql:9.4.1208.jre7"
+    
     compile 'org.grails.plugins:quartz:2.0.13'
 
     compile 'org.grails.plugins:spring-security-core:3.2.3'

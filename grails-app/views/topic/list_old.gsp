@@ -21,57 +21,35 @@
 <script>
     var grid, wnd, dataSource;
     $(document).ready(function () {
-
         dataSource = new kendo.data.TreeListDataSource({
             transport: {
                 read: {
-                    url: "${createLink(action:'listJSON')}",
-                    dataType: "json"
-                },
-                update: {
-                    url: '${createLink(action:'save')}',
-                    dataType: "json"
-                },
-                destroy: {
-                    url: '${createLink(action:'delete')}',
-                    dataType: "json"
-                },
-                create: {
-                    url: '${createLink(action:'save')}',
-                    dataType: "json"
-                },
-                parameterMap: function (options, operation) {
-                    console.log(options);
-                    if (operation !== "read" && options.id) {
-                        console.log(options.id);
-                        return {id: options.id};
-                    }
+                    url: '${createLink(action:'listJSON')}',
+                    dataType: "json",
+                    type: "POST"
                 }
             },
             schema: {
-                data: 'data',
-                total: 'total',
                 model: {
                     id: "id",
                     parentId: "parentId",
                     fields: {
-                        parentId: {field: "parentId", nullable: true},
-                        name: {field: "name", type: "string"},
-                        id: {field: "id", type: "number"}
-                    },
-                    expanded: false
-                }
+                        id: {field: "id", type: 'number', nullable: false},
+                        parentId: {field: "parentId", nullable: true}
+                    }
+                },
+                expanded: true
             }
         });
+
         grid = $("#grid").kendoTreeList({
             dataSource: dataSource,
-            sortable: true,
-            columns: [
-                {field: "name", title: "Name"},
-                {command: [{name: "customEdit", text: "Edit", click: editTopic}, "destroy"], width: 300}
-            ],
             pageable: true,
             toolbar: kendo.template($("#toolbarTemplate").html()),
+            columns: [
+                {field: "name", title: "Name"},
+                {command: [{text: "Edit", click: editTopic}, "destroy"], title: " ", width: "230px"}
+            ],
             editable: "popup"
         });
 

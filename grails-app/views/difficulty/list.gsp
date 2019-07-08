@@ -41,7 +41,7 @@
                 },
                 parameterMap: function (options, operation) {
                     if (operation !== "read" && options.models) {
-                        return {models: kendo.stringify(options.models)};
+                        return {id: kendo.stringify(options.models)};
                     }
                 }
             },
@@ -71,7 +71,7 @@
                 {field: "name", title: "Name"},
                 // {field: "dateCreated", title: "Created", format: "{0:MM/dd/yyyy h:mm tt}"},
                 // {field: "lastUpdated", title: "Updated", format: "{0:MM/dd/yyyy h:mm tt}"},
-                {command: [{text: "Edit", click: editDifficulty}, "destroy"], title: " ", width: "220px"}
+                {command: [{text: "Edit", click: editDifficulty}, "destroy"], title: " ", width: "230px"}
             ],
             editable: "popup"
         });

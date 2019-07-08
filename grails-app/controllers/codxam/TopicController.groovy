@@ -12,7 +12,13 @@ class TopicController {
 
     def listJSON() {
         println params
-        def data = Topic.findAllByDeleted(false, [offset: params.skip, max: params.take])
+        def data = Topic.findAllByDeleted(false).collect {
+            [
+                    id      : it.id,
+                    parentId: it.parent?.id,
+                    name    : it.name
+            ]
+        }
         def total = Topic.countByDeleted(false)
         render([data: data, total: total] as JSON)
     }
@@ -32,7 +38,7 @@ class TopicController {
                 return
             }
 
-            render topic.id
+            render 1
         } catch (Exception ex) {
             ex.printStackTrace()
             render ex.message
@@ -40,12 +46,9 @@ class TopicController {
     }
 
     def delete() {
-        def models = JSON.parse(params.models).collect { it.toSpreadMap() }
-        models.each { model ->
-            def item = Topic.get(model.id)
-            item.deleted = true
-            item.save(flush: true)
-        }
+        def item = Topic.get(params.id)
+        item.deleted = true
+        item.save(flush: true)
         render([] as JSON)
     }
 

@@ -7,6 +7,12 @@
             <label for="name">Name</label>
             <input name="name" id="name" style="width: 570px;" value="${topic?.name}" class="k-textbox"/>
         </p>
+
+        <p>
+            <label for="parent">Parent</label>
+            <g:render template="selector"
+                      model="${[name: 'parent.id', id: 'parent', value: topic?.parent?.id, style: 'width: 570px;']}"/>
+        </p>
     </form>
 
     <div class="modal-error error" id="saveError"></div>
