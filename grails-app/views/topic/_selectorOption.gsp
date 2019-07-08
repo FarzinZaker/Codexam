@@ -2,9 +2,9 @@
     text: "${topic.name}",
     value: ${topic.id},
     expanded: false,
-<g:if test="${topic.children?.size()}">
+<g:if test="${topic.children?.findAll { !it.deleted }?.size()}">
     items: [
-    <g:each in="${topic.children}" var="child">
+    <g:each in="${topic.children.findAll { !it.deleted }.sort { it.name }}" var="child">
         <g:render template="selectorOption" model="${[topic: child]}"/>
     </g:each>
     ]

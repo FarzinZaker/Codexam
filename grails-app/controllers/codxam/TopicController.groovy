@@ -12,7 +12,7 @@ class TopicController {
 
     def listJSON() {
         println params
-        def data = Topic.findAllByDeleted(false).collect {
+        def data = Topic.findAllByDeleted(false).sort { it.name }.collect {
             [
                     id      : it.id,
                     parentId: it.parent?.id,
