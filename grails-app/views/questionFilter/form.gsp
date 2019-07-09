@@ -6,7 +6,8 @@
 
         <p>
             <label for="topic">Topic</label>
-            <input name="topic" id="topic" style="width: 570px;" value="${questionFilter?.topic?.id}"/>
+            <g:render template="/topic/selector"
+                      model="${[name: 'topic.id', id: 'topic', value: questionFilter?.topic?.id, style: 'width: 570px;']}"/>
         </p>
 
         <p>
@@ -33,22 +34,6 @@
 </div>
 <script>
     (function () {
-
-        $("#topic").kendoComboBox({
-            placeholder: "Select topic",
-            dataTextField: "name",
-            dataValueField: "id",
-            filter: "contains",
-            autoBind: true,
-            dataSource: {
-                transport: {
-                    read: {
-                        url: "${createLink(controller: 'topic', action: 'listSimple')}",
-                        dataType: "json"
-                    }
-                }
-            }
-        });
 
         $("#difficulty").kendoComboBox({
             placeholder: "Select difficulty level",

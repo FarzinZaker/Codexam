@@ -53,7 +53,7 @@ class TopicController {
     }
 
     def listSimple() {
-        def data = Topic.findAllByDeleted(false).collect { [name: it.name, id: it.id] }
+        def data = Topic.findAllByDeleted(false).collect { [name: it.fullName, id: it.id] }
         render(data as JSON)
     }
 }

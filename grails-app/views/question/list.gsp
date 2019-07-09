@@ -85,7 +85,7 @@
                 {field: "score", title: "Score"},
                 // {field: "dateCreated", title: "Created", format: "{0:MM/dd/yyyy h:mm tt}"},
                 // {field: "lastUpdated", title: "Updated", format: "{0:MM/dd/yyyy h:mm tt}"},
-                {command: [{text: "Edit", click: editQuestion}, "destroy"], title: " ", width: "220px"}
+                {command: [{text: "Edit", click: editQuestion}, "destroy"], title: " ", width: "230px"}
             ],
             editable: "popup",
             edit: function (e) {
@@ -100,7 +100,7 @@
                 visible: false,
                 resizable: false,
                 actions: ["Maximize", "Close"],
-                width: 800
+                width: 850
             }).data("kendoWindow");
 
         grid.find(".k-grid-toolbar").on("click", ".k-add", function (e) {

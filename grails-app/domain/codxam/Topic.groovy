@@ -14,4 +14,8 @@ class Topic {
     static constraints = {
         name()
     }
+
+    transient String getFullName() {
+        (parent ? "${parent.fullName} ❯ " : '') + name
+    }
 }

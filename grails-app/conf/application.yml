@@ -118,7 +118,7 @@ environments:
         testOnReturn: true
         validationQuery: SELECT 1
     images:
-      path: /Personal/DevDesk/Codxam/images
+      path: C:/DevDesk/Codxam/images
   test:
     dataSource:
       dbCreate: update

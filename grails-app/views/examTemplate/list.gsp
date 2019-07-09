@@ -77,7 +77,7 @@
                 {field: "link", title: "Link", template: "<a href='#: link #' target='_blank'>#: link #</a>"},
                 // {field: "dateCreated", title: "Created", format: "{0:MM/dd/yyyy h:mm tt}"},
                 // {field: "lastUpdated", title: "Updated", format: "{0:MM/dd/yyyy h:mm tt}"},
-                {command: [{text: "Edit", click: editExamTemplate}, {text: "Filters", click: listFilters}, "destroy"], title: " ", width: "320px"}
+                {command: [{text: "Edit", click: editExamTemplate}, {text: "Filters", click: listFilters}, "destroy"], title: " ", width: "330px"}
             ],
             editable: "popup",
             edit: function (e) {
