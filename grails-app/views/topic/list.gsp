@@ -41,7 +41,6 @@
                     dataType: "json"
                 },
                 parameterMap: function (options, operation) {
-                    console.log(options);
                     if (operation !== "read" && options.id) {
                         console.log(options.id);
                         return {id: options.id};

@@ -15,10 +15,8 @@
         <li>
             Questions
             <ul>
-                <g:each in="${Topic.findAllByDeleted(false)}" var="topic">
-                    <li>
-                        <a href="${createLink(controller: 'question', action: 'list', id: topic.id)}">${topic.name}</a>
-                    </li>
+                <g:each in="${Topic.findAllByParentIsNullAndDeleted(false).sort { it.name }}" var="topic">
+                    <g:render template="/layouts/topicMenu" model="${[topic: topic]}"/>
                 </g:each>
             </ul>
         </li>

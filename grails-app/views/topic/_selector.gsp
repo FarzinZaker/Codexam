@@ -8,7 +8,7 @@
             height: "auto",
             dataSource: [
                 <g:each in="${Topic.findAllByParentIsNullAndDeleted(false).sort{it.name}}" var="topic">
-                <g:render template="selectorOption" model="${[topic: topic, value: value]}"/>,
+                <g:render template="selectorOption" model="${[topic: topic, value: value]}"/>
                 </g:each>
             ]
         });
