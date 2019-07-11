@@ -28,6 +28,12 @@ endpoints:
 
 ---
 grails:
+  controllers:
+    upload:
+      maxFileSize: 4194304
+      maxRequestSize: 4194304
+---
+grails:
   mime:
     disable:
       accept:

@@ -3,7 +3,7 @@ package codxam
 import grails.testing.web.controllers.ControllerUnitTest
 import spock.lang.Specification
 
-class TestControllerSpec extends Specification implements ControllerUnitTest<ExamController> {
+class ApplicationControllerSpec extends Specification implements ControllerUnitTest<ApplicationController> {
 
     def setup() {
     }

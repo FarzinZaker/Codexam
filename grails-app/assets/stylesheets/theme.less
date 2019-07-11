@@ -46,6 +46,7 @@ body {
 
   .count-flag {
     background-color: #03A9F4;
+
     i {
       //font-size: 14px !important;
       font-weight: bold;
@@ -68,6 +69,7 @@ body {
   h3 {
     a {
       color: #9E9E9E;
+
       i {
         //font-size: 16px;
         &:hover {
@@ -88,6 +90,7 @@ body {
     margin-top: 10px;
     opacity: 0;
     padding: 5px 10px;
+
     a {
       i {
         color: white;
@@ -109,6 +112,7 @@ body {
   padding: 3px 14px 3px 10px;
   border-radius: 15px;
   color: white;
+
   i {
     margin-right: 5px;
     float: left;
@@ -116,6 +120,7 @@ body {
     line-height: 18px;
     font-style: normal;
   }
+
   span {
     line-height: 24px;
     float: left;
@@ -130,11 +135,13 @@ body {
   .logo {
     display: inline-block;
     margin: 10px 10px 10px 20px;
+
     img {
       //width: 48px;
       height: 48px;
       float: left;
     }
+
     span {
       //font-size: 24px;
       line-height: 48px;
@@ -146,6 +153,7 @@ body {
       padding-left: 17px;
     }
   }
+
   .big-logo {
     display: inline-block;
     margin: 100px 20px 10px 0;
@@ -155,6 +163,7 @@ body {
       vertical-align: middle;
       float: left;
     }
+
     span {
       font-size: 32px;
       line-height: 100px;
@@ -178,8 +187,10 @@ body {
     .k-item .k-item {
       //border-bottom-width: 0;
     }
+
     .k-link {
       box-shadow: none;
+
       .material-icons {
         //font-size: 18px;
         float: left;
@@ -201,11 +212,13 @@ body {
   background-color: #ECEFF1;
   padding: 5px 20px;
   text-align: right;
+
   .k-textbox {
     min-width: 300px;
     box-shadow: none !important;
     margin-left: 5px;
   }
+
   span {
     line-height: 28px;
     //font-size: 12px;
@@ -227,6 +240,7 @@ body {
   border-bottom: 1px solid #4DD0E1;
   padding-left: 20px;
   margin-bottom: 25px;
+
   h1 {
     background-color: #ffffff;
     display: inline-block;
@@ -236,10 +250,12 @@ body {
     color: #C2185B;
     margin: 0;
   }
+
   span {
     float: right;
     background-color: white;
     padding-left: 10px;
+
     a {
       min-width: 100px;
     }
@@ -317,6 +333,7 @@ h3 {
     background-color: #ECEFF1;
     width: 150px;
     padding: 10px;
+
     h3 {
       color: white;
       margin-top: -28px;
@@ -425,6 +442,7 @@ pre {
       border-width: 0 !important;
     }
   }
+
   * {
     line-height: 24px !important;
     //font-size: 14px;
@@ -434,7 +452,7 @@ pre {
 label {
   color: #607D8B;
 
-  & + .k-textbox {
+  & + .k-widget, & + .k-textbox {
     margin-top: 5px;
     display: block;
   }
@@ -501,22 +519,27 @@ h1 {
 
 .manual-dialog {
   margin: 0 -12px;
+
   form {
     padding-right: 12px;
     padding-left: 12px;
 
     .k-tabstrip-wrapper {
       margin: -12px;
+
       .k-tabstrip {
         border-width: 0;
         background-color: transparent;
+
         .k-tabstrip-items {
           padding-top: 7px;
           background-color: #C5CAE9;
+
           .k-item {
             border-bottom-width: 3px;
           }
         }
+
         .k-content {
           margin-bottom: 0;
         }
@@ -636,6 +659,7 @@ h1 {
   .option {
     margin-top: 12px;
     margin-bottom: 12px;
+
     .k-radio-label:before {
       width: 18px;
       height: 18px;
@@ -666,20 +690,25 @@ h1 {
 .progress-bar {
   width: 100%;
   vertical-align: bottom;
+
   tr {
     td {
       border-bottom: 4px solid Transparent;
       height: 34px;
+
       &.done {
         border-bottom-color: #8BC34A;
       }
+
       &.current {
         border-bottom-color: #FF9800;
         font-size: 11px;
+
         b {
           font-size: 16px;
         }
       }
+
       &.pending {
         border-bottom-color: #90A4AE;
       }
@@ -703,13 +732,16 @@ a {
 
 .intro {
   text-align: center;
+
   div {
     text-align: center;
     display: inline-block;
     line-height: 24px;
+
     p {
       text-align: left;
     }
+
     ol {
       text-align: left;
     }
@@ -719,22 +751,11 @@ a {
     text-align: left;
     margin-top: 15px;
   }
+
   h3 {
     margin-top: 30px;
     padding-bottom: 0;
     margin-bottom: 0;
-  }
-
-  .note {
-    border-top: 1px solid #90CAF9;
-    border-bottom: 1px solid #90CAF9;
-    background-color: #E3F2FD;
-    padding: 0 15px;
-    font-size: 14px;
-    text-align: left;
-    a {
-      display: inline-block;
-    }
   }
 
   .tool-bar {
@@ -744,11 +765,31 @@ a {
   }
 }
 
+.tool-bar {
+  display: block;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.note {
+  border-top: 1px solid #90CAF9;
+  border-bottom: 1px solid #90CAF9;
+  background-color: #E3F2FD;
+  padding: 0 15px;
+  font-size: 14px;
+  text-align: left;
+
+  a {
+    display: inline-block;
+  }
+}
+
 .footer {
   border-top: 1px solid #90A4AE;
   margin-top: 50px;
   padding-top: 15px;
   color: #607D8B;
+
   * {
     font-size: 13px;
   }
@@ -756,4 +797,30 @@ a {
   div + div {
     text-align: right;
   }
+}
+
+.k-upload-button input {
+  bottom: auto;
+  right: auto;
+  top: 0;
+  left: 0;
+}
+
+.k-combobox {
+  background: none;
+}
+
+h1 + h2 {
+  font-weight: normal;
+  background: #ECEFF1;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+p {
+  line-height: 24px;
+}
+
+li {
+  line-height: 24px;
 }

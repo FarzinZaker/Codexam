@@ -4,6 +4,8 @@ class BootStrap {
 
     def init = { servletContext ->
 
+
+        //Users & Roles
         Roles.ALL.each { authority ->
             def role = Role.findByAuthority(authority)
             if (!role)
@@ -24,6 +26,26 @@ class BootStrap {
 
         if (!UserRole.findByUserAndRole(admin, adminRole))
             new UserRole(user: admin, role: adminRole).save()
+
+
+        //Countries
+        if (Country.countByDeleted(false) == 0) {
+            def resource = this.class.classLoader.getResource('countries.csv')
+            def path = resource.file
+            new File(path).eachLine { line ->
+                new Country(name: line.trim()).save()
+            }
+        }
+
+        //TimeZones
+        if (TimeZone.countByDeleted(false) == 0) {
+            def resource = this.class.classLoader.getResource('timeZones.csv')
+            def path = resource.file
+            new File(path).eachLine { line ->
+                def parts = line.split(',')
+                new TimeZone(name: parts[0].trim(), location: parts[2].trim(), difference: parts[1].trim()).save()
+            }
+        }
     }
     def destroy = {
     }

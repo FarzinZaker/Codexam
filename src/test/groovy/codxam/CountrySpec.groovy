@@ -1,9 +1,9 @@
 package codxam
 
-import grails.testing.web.controllers.ControllerUnitTest
+import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 
-class TestControllerSpec extends Specification implements ControllerUnitTest<ExamController> {
+class CountrySpec extends Specification implements DomainUnitTest<Country> {
 
     def setup() {
     }

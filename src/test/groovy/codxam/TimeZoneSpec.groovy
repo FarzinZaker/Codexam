@@ -1,9 +1,9 @@
 package codxam
 
-import grails.testing.web.controllers.ControllerUnitTest
+import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 
-class TestControllerSpec extends Specification implements ControllerUnitTest<ExamController> {
+class TimeZoneSpec extends Specification implements DomainUnitTest<TimeZone> {
 
     def setup() {
     }

@@ -26,7 +26,7 @@ class ExamTemplateController {
             [
                     id         : it.id,
                     name       : it.name,
-                    link       : createLink(controller: 'test', action: 'intro', id: it.uniqueId, absolute: true),
+                    link       : createLink(controller: 'application', action: 'intro', id: it.uniqueId, absolute: true),
                     type       : it.class.name,
                     dateCreated: it.dateCreated,
                     lastUpdated: it.lastUpdated
