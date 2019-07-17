@@ -1,7 +1,7 @@
 {
     text: "${topic.name}",
     value: ${topic.id},
-    expanded: false,
+    expanded: true,
 <g:if test="${topic.children?.findAll { !it.deleted }?.size()}">
     items: [
     <g:each in="${topic.children.findAll { !it.deleted }.sort { it.name }}" var="child">

@@ -5,7 +5,7 @@
     $(document).ready(function () {
         $("#${id}").kendoDropDownTree({
             placeholder: "Select ...",
-            height: "auto",
+            height: 200,
             dataSource: [
                 <g:each in="${Topic.findAllByParentIsNullAndDeleted(false).sort{it.name}}" var="topic">
                 <g:render template="/topic/selectorOption" model="${[topic: topic, value: value]}"/>

@@ -58,7 +58,7 @@
                         name: {field: "name", type: "string"},
                         id: {field: "id", type: "number"}
                     },
-                    expanded: false
+                    expanded: true
                 }
             }
         });
@@ -67,7 +67,7 @@
             sortable: true,
             columns: [
                 {field: "name", title: "Name"},
-                {command: [{name: "customEdit", text: "Edit", click: editTopic}, "destroy"], width: 300}
+                {command: [{name: "customEdit", text: "Edit", click: editTopic}, {name: "addChildTopic", text: "Add Child", click: addChildTopic}, "destroy"], width: 370}
             ],
             pageable: true,
             toolbar: kendo.template($("#toolbarTemplate").html()),
@@ -111,6 +111,22 @@
             wnd.open();
         });
         wnd.title('Edit Test Topic').center().open();
+    }
+
+    function addChildTopic(e) {
+        e.preventDefault();
+        kendo.ui.progress(wnd.element, true);
+
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        wnd.refresh({
+            url: '${createLink(action:'form')}',
+            data: {parentId: dataItem.id}
+        });
+        wnd.bind("refresh", function () {
+            wnd.center();
+            wnd.open();
+        });
+        wnd.title('Add Child Test Topic').center().open();
     }
 </script>
 

@@ -25,7 +25,7 @@ class TopicController {
 
     def form() {
         [
-                topic: params.id ? Topic.get(params.id) : new Topic()
+                topic: params.id ? Topic.get(params.id) : (params.parentId ? new Topic(parent: Topic.get(params.parentId)) : new Topic())
         ]
     }
 

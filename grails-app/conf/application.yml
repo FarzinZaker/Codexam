@@ -109,11 +109,11 @@ environments:
       dbCreate: update
       pooled: true
       jmxExport: true
-      url: "jdbc:postgresql://localhost:5432/codexam"
+      url: "jdbc:postgresql://10.233.240.3:5432/codexam"
       driverClassName: org.postgresql.Driver
       dialect: org.hibernate.dialect.PostgreSQLDialect
       username: postgres
-      password: Salam123
+      password: h0st1ng!
       properties:
         maxActive: -1
         minEvictableIdleTimeMillis: 1800000
@@ -153,3 +153,12 @@ environments:
         defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
     images:
       path: /home/images
+---
+selenium:
+  chrome:
+    driver: C:/DevDesk/Codexam/tools/chromedriver.exe
+    dataFolder: C:/Users/Administrator/AppData/Local/Google/Chrome/User Data/Default/
+---
+hackerRank:
+  username:
+  password:

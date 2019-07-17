@@ -44,7 +44,7 @@ class ImageController {
         if (content) {
             def seconds = 3600 * 24
             DateFormat httpDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
-            httpDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+            httpDateFormat.setTimeZone(java.util.TimeZone.getTimeZone("GMT"));
             Calendar cal = new GregorianCalendar();
             cal.add(Calendar.SECOND, seconds);
             response.setHeader("Cache-Control", "PUBLIC, max-age=" + seconds + ", must-revalidate");
