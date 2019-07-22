@@ -5,6 +5,7 @@ class QuestionChoice {
     String name
     MultipleChoiceQuestion question
     Integer displayOrder
+    Boolean correctAnswer = false
 
     Date dateCreated
     Date lastUpdated
