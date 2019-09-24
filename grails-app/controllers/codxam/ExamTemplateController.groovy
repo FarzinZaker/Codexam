@@ -9,6 +9,7 @@ import grails.plugin.springsecurity.annotation.Secured
 class ExamTemplateController {
 
     GrailsApplication grailsApplication
+    def questionFilterService
 
     def list() {
     }
@@ -39,7 +40,9 @@ class ExamTemplateController {
     def form() {
         [
                 examTemplate: params.id ? ExamTemplate.get(params.id) : new RandomExamTemplate(),
-                types       : grailsApplication.getArtefacts("Domain").clazz.name*.toString().findAll { it.startsWith('codxam.examTemplates.') && it.endsWith('ExamTemplate') }
+                types       : grailsApplication.getArtefacts("Domain").clazz.name*.toString().findAll {
+                    it.startsWith('codxam.examTemplates.') && it.endsWith('ExamTemplate')
+                }
         ]
     }
 
@@ -61,7 +64,9 @@ class ExamTemplateController {
     }
 
     def listAnswerTypes() {
-        def data = grailsApplication.getArtefacts("Domain").clazz.name*.toString().findAll { it.startsWith('codxam.examTemplates.') && it.endsWith('ExamTemplate') }.collect {
+        def data = grailsApplication.getArtefacts("Domain").clazz.name*.toString().findAll {
+            it.startsWith('codxam.examTemplates.') && it.endsWith('ExamTemplate')
+        }.collect {
             [name: message(code: it), id: it]
         }
         render(data as JSON)
@@ -75,5 +80,11 @@ class ExamTemplateController {
             item.save(flush: true)
         }
         render([] as JSON)
+    }
+
+    def validateFilters() {
+        def examTemplate = RandomExamTemplate.get(params.id)
+        questionFilterService.validate(examTemplate)
+        redirect(controller: 'questionFilter', action: 'list', id: examTemplate.id)
     }
 }

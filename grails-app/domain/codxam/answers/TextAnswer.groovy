@@ -2,7 +2,7 @@ package codxam.answers
 
 import codxam.Answer
 
-class LongTextAnswer extends Answer {
+class TextAnswer extends Answer {
 
     String body
 
@@ -11,6 +11,6 @@ class LongTextAnswer extends Answer {
     }
 
     static constraints = {
-
+        body nullable: true
     }
 }

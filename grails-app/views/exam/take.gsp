@@ -25,7 +25,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-10">
-                            <g:render template="progressbar" model="${[total: totalQuestions, current: currentQuestion]}"/>
+                            <g:render template="progressbar"
+                                      model="${[total: totalQuestions, current: currentQuestion]}"/>
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-2">
@@ -41,13 +42,12 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <h1>${question.title}</h1>
+
             <div class="question">
                 <format:html value="${question?.body}"/>
             </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
             <g:render template="answerForm" model="${[question: question]}"/>
         </div>
     </div>

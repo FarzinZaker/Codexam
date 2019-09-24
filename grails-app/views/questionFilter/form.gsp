@@ -9,6 +9,10 @@
             <g:render template="/topic/selector"
                       model="${[name: 'topic.id', id: 'topic', value: questionFilter?.topic?.id, style: 'width: 570px;']}"/>
         </p>
+        <p>
+            <label for="questionType">Type</label>
+            <input name="questionType" id="questionType" style="width:570px;" value="${questionFilter?.questionType}"/>
+        </p>
 
         <p>
             <label for="difficulty">Difficulty Level</label>
@@ -34,6 +38,22 @@
 </div>
 <script>
     (function () {
+
+        $("#questionType").kendoComboBox({
+            placeholder: "Select Type",
+            dataTextField: "name",
+            dataValueField: "id",
+            filter: "contains",
+            autoBind: true,
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "${createLink(controller: 'question', action: 'listAnswerTypes')}",
+                        dataType: "json"
+                    }
+                }
+            }
+        });
 
         $("#difficulty").kendoComboBox({
             placeholder: "Select difficulty level",

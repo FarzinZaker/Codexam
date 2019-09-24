@@ -8,5 +8,6 @@ class MultipleChoiceAnswer extends Answer {
     QuestionChoice choice
 
     static constraints = {
+        choice nullable: true
     }
 }

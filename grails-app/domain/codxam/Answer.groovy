@@ -3,9 +3,11 @@ package codxam
 class Answer {
 
     ExamSheet examSheet
+    Question question
     Date startDate
     Date endDate
     String ipAddress
+    Integer sequence
 
     Integer mark
 
@@ -17,5 +19,6 @@ class Answer {
         startDate nullable: true
         endDate nullable: true
         mark nullable: true
+        ipAddress nullable: true
     }
 }

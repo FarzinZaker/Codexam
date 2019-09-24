@@ -18,4 +18,13 @@ class Topic {
     transient String getFullName() {
         (parent ? "${parent.fullName} ❯ " : '') + name
     }
+
+    transient List<Topic> getAllChildren() {
+        def list = []
+        list.addAll(children.findAll { !it.deleted })
+        children.findAll { !it.deleted }?.each { Topic child ->
+            list.addAll(child.allChildren)
+        }
+        list
+    }
 }

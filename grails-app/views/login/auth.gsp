@@ -1,6 +1,6 @@
 <html>
 <head>
-    <meta name="layout" content="${gspLayout ?: 'main'}"/>
+    <meta name="layout" content="simple"/>
     <title><g:message code='springSecurity.login.title'/></title>
 </head>
 

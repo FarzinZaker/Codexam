@@ -21,8 +21,12 @@
 
 <script type="text/x-kendo-template" id="toolbarTemplate">
 <div class="refreshBtnContainer">
-    <a href="\\#" class="k-add k-link k-button" title="New"><span class="k-icon k-i-plus"></span> New QuestionFilter Filter</a>
-    <a href="\\#" class="k-return k-link k-button" title="Back" style="float: right;"><span class="k-icon k-i-arrow-left"></span> Return to Exam Templates</a>
+    <a href="\\#" class="k-add k-link k-button" title="New"><span
+            class="k-icon k-i-plus"></span> New QuestionFilter Filter</a>
+    <a href="\\#" class="k-return k-link k-button" title="Back" style="float: right;"><span
+            class="k-icon k-i-arrow-left"></span>&nbsp;Return to Exam Templates</a>
+    <a href="\\#" class="k-validate k-link k-button" title="Back" style="float: right;"><span
+            class="k-icon k-i-check"></span>&nbsp;Validate</a>
 </div>
 </script>
 <script>
@@ -61,25 +65,48 @@
                     id: "id",
                     fields: {
                         topic: {type: "string", validation: {required: true}},
+                        questionType: {type: "string", validation: {required: true}},
                         difficulty: {type: "string", validation: {required: true}},
                         count: {type: "integer", validation: {required: true}},
+                        resultsCount: {type: "integer"},
+                        isValid: {type: "bool"},
                         dateCreated: {type: "date", editable: false, nullable: false},
                         lastUpdated: {type: "date", editable: false, nullable: false}
                     }
                 }
-            }
+            },
+            group: {
+                field: "topic", aggregates: [
+                    {field: "count", aggregate: "sum"}
+                ]
+            },
+            aggregate: [{field: "count", aggregate: "sum"}],
+            sort: [
+                {field: "questionType"},
+                {field: "difficulty"}
+            ]
         });
 
         grid = $("#grid").kendoGrid({
             dataSource: dataSource,
             pageable: true,
+            sortable: true,
             toolbar: kendo.template($("#toolbarTemplate").html()),
             columns: [
-                {field: "topic", title: "Topic"},
+                {
+                    field: "topic", title: "Topic",
+                    groupHeaderTemplate: "#=value# (#=aggregates.count.sum#)"
+                },
+                {field: "questionType", title: "Type"},
                 {field: "difficulty", title: "Diffuculty"},
-                {field: "count", title: "Count"},
-                // {field: "dateCreated", title: "Created", format: "{0:MM/dd/yyyy h:mm tt}"},
-                // {field: "lastUpdated", title: "Updated", format: "{0:MM/dd/yyyy h:mm tt}"},
+                {
+                    field: "count",
+                    title: "Count",
+                    aggregates: ["sum"],
+                    footerTemplate: "#=sum# Questions"
+                },
+                {field: "resultsCount", title: "Results"},
+                {field: "isValid", title: "Valid", template: enabledTemplate},
                 {command: [{text: "Edit", click: editQuestionFilter}, "destroy"], title: " ", width: "230px"}
             ],
             editable: "popup",
@@ -90,7 +117,12 @@
 
         grid.find(".k-grid-toolbar").on("click", ".k-return", function (e) {
             e.preventDefault();
-            window.location.href = "${createLink(controller:'examTemplate', action: 'list')}"
+            window.location.href = "${createLink(controller:'examTemplate', action: 'list')}";
+        });
+
+        grid.find(".k-grid-toolbar").on("click", ".k-validate", function (e) {
+            e.preventDefault();
+            window.location.href = "${createLink(controller:'examTemplate', action: 'validateFilters', id: params.id)}";
         });
 
         grid.find(".k-grid-toolbar").on("click", ".k-add", function (e) {
@@ -132,6 +164,10 @@
             wnd.open();
         });
         wnd.title('Edit Question Filter').center().open();
+    }
+
+    function enabledTemplate(dataItem) {
+        return dataItem.isValid ? '<i class="material-icons md-18">check</i>' : '<i class="material-icons md-18">close</i>'
     }
 </script>
 </body>

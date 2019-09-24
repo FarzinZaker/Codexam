@@ -76,7 +76,7 @@
                 <p>Since this test includes technical questions, make sure that your working environment is ready before starting the test.</p>
 
                 <div class="tool-bar">
-                    <a href="${createLink(action: 'apply', id: params.id)}" class="k-button">Start Your Application</a>
+                    <a href="${createLink(action: 'apply', id: params.id)}" class="k-button k-primary">Start Your Application</a>
                 </div>
             </div>
         </div>

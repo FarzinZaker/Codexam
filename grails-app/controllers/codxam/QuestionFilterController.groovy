@@ -29,12 +29,15 @@ class QuestionFilterController {
 
         value.data = list.collect {
             [
-                    id         : it.id,
-                    topic      : it.topic?.name,
-                    difficulty : it.difficulty?.name,
-                    count      : it.count,
-                    dateCreated: it.dateCreated,
-                    lastUpdated: it.lastUpdated
+                    id          : it.id,
+                    topic       : it.topic?.name,
+                    questionType: message(code: it.questionType),
+                    difficulty  : it.difficulty?.name,
+                    count       : it.count,
+                    resultsCount: it.resultsCount,
+                    isValid     : it.isValid,
+                    dateCreated : it.dateCreated,
+                    lastUpdated : it.lastUpdated
             ]
         }
 

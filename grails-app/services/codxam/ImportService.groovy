@@ -18,9 +18,12 @@ class ImportService {
 
             Question.withNewTransaction {
 
-                def difficulty = Difficulty.findByName(externalQuestion.difficulty)
-                if (!difficulty)
-                    difficulty = new Difficulty(name: externalQuestion.difficulty).save(flush: true)
+                def difficulty = Difficulty.findByName(externalQuestion.difficulty ?: 'EASY')
+                if (!difficulty) {
+                    difficulty = new Difficulty(name: externalQuestion.difficulty)
+                    if (!difficulty.save(flush: true))
+                        println difficulty.errors
+                }
 
                 def question
                 if (['Multiple Answers', 'Multiple Choice'].contains(externalQuestion.type))
@@ -32,20 +35,28 @@ class ImportService {
                 question.title = externalQuestion.name
                 question.score = externalQuestion.score
                 question.body = externalQuestion.body
-                question.timeLimit = externalQuestion.timeLimit
+                question.timeLimit = externalQuestion.timeLimit ?: 0
                 question.difficulty = difficulty
-                question.save(flush: true)
+                if (!question.save(flush: true))
+                    println question.errors
 
                 externalQuestion.tags.each { tag ->
                     def topic = Topic.findByName(tag.name)
-                    if (!topic)
-                        topic = new Topic(name: tag.name).save(flush: true)
-                    new QuestionTopic(question: question, topic: topic).save(flush: true)
+                    if (!topic) {
+                        topic = new Topic(name: tag.name)
+                        if (!topic.save(flush: true))
+                            println topic.errors
+                    }
+                    def questionTopic = new QuestionTopic(question: question, topic: topic)
+                    if (!questionTopic.save(flush: true))
+                        println questionTopic.errors
                 }
 
                 if (question instanceof MultipleChoiceQuestion)
                     ExternalQuestionChoice.findAllByQuestion(externalQuestion).each {
-                        new QuestionChoice(name: it.title, correctAnswer: it.correctAnswer, displayOrder: it.displayOrder, question: question).save(flush: true)
+                        def questionChoice = new QuestionChoice(name: it.title, correctAnswer: it.correctAnswer, displayOrder: it.displayOrder, question: question)
+                        if (!questionChoice.save(flush: true))
+                            println questionChoice
                     }
 
             }

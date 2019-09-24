@@ -106,7 +106,7 @@
                 </div>
 
                 <div class="tool-bar">
-                    <input type="submit" id="submit" class="k-button" value="Start My Test"
+                    <input type="submit" id="submit" class="k-button k-primary" value="Start My Test"
                            onsubmit="return validateForm();"/>
                 </div>
             </div>

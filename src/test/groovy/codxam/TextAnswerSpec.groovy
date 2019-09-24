@@ -1,10 +1,10 @@
 package codxam
 
-import codxam.answers.LongTextAnswer
+import codxam.answers.TextAnswer
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 
-class LongTextAnswerSpec extends Specification implements DomainUnitTest<LongTextAnswer> {
+class TextAnswerSpec extends Specification implements DomainUnitTest<TextAnswer> {
 
     def setup() {
     }

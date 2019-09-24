@@ -16,7 +16,7 @@
             });
 
             <g:each in="${question?.id ? QuestionChoice.findAllByQuestionAndDeleted(question, false)?.sort { it.displayOrder } : []}" var="choice">
-            addOptionWithData(${choice.id}, '${choice.name}', ${question?.correctAnswer?.id == choice.id});
+            addOptionWithData(${choice.id}, '${choice.name}', ${choice.correctAnswer});
             </g:each>
 
         })();

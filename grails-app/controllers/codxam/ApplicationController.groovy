@@ -1,6 +1,10 @@
 package codxam
 
+import codxam.examTemplates.RandomExamTemplate
+
 class ApplicationController {
+
+    def questionFilterService
 
     def intro() {
         [examTemplate: ExamTemplate.findByUniqueId(params.id)]
@@ -18,10 +22,9 @@ class ApplicationController {
         }
         applicant.save()
 
-        def examTemplate = ExamTemplate.findByUniqueId(params.exam.code)
+        def examTemplate = RandomExamTemplate.findByUniqueId(params.exam.code)
 
-        def examSheet = new ExamSheet(examTemplate: examTemplate, applicant: applicant)
-        examSheet.save(flush: true)
+        def examSheet = questionFilterService.createExam(examTemplate, applicant)
 
         redirect(controller: 'exam', action: 'take', id: examSheet.id)
     }

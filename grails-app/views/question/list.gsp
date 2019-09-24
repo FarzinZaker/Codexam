@@ -53,7 +53,7 @@
                 }
             },
             batch: true,
-            pageSize: 20,
+            pageSize: 10,
             schema: {
                 data: 'data',
                 total: 'total',
@@ -79,10 +79,11 @@
             toolbar: kendo.template($("#toolbarTemplate").html()),
             columns: [
                 {field: "title", title: "Title"},
-                {field: "difficulty", title: "Diffuculty"},
-                {field: "type", title: "Type"},
-                {field: "timeLimit", title: "Time Limit"},
-                {field: "score", title: "Score"},
+                {field: "difficulty", title: "Diffuculty", width: "100px"},
+                {field: "type", title: "Type", width: "160px"},
+                {field: "timeLimit", title: "Time Limit", width: "110px"},
+                {field: "score", title: "Score", width: "80px"},
+                // {field: "topics", title: "Topics", width: "100px"},
                 // {field: "dateCreated", title: "Created", format: "{0:MM/dd/yyyy h:mm tt}"},
                 // {field: "lastUpdated", title: "Updated", format: "{0:MM/dd/yyyy h:mm tt}"},
                 {command: [{text: "Edit", click: editQuestion}, "destroy"], title: " ", width: "230px"}

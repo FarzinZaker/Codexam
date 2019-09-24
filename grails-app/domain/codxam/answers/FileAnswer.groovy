@@ -8,5 +8,6 @@ class FileAnswer extends Answer {
     Attachment file
 
     static constraints = {
+        file nullable: true
     }
 }

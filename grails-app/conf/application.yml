@@ -78,7 +78,7 @@ grails:
       codec: html
     gsp:
       encoding: UTF-8
-      htmlcodec: xml
+      htmlcodec: xmln
       codecs:
         expression: html
         scriptlets: html

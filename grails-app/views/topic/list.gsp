@@ -57,8 +57,7 @@
                         parentId: {field: "parentId", nullable: true},
                         name: {field: "name", type: "string"},
                         id: {field: "id", type: "number"}
-                    },
-                    expanded: true
+                    }
                 }
             }
         });
@@ -67,7 +66,7 @@
             sortable: true,
             columns: [
                 {field: "name", title: "Name"},
-                {command: [{name: "customEdit", text: "Edit", click: editTopic}, {name: "addChildTopic", text: "Add Child", click: addChildTopic}, "destroy"], width: 370}
+                {command: [{name: "customEdit", text: "Edit", click: editTopic}, {name: "addChildTopic", text: "Add Child", click: addChildTopic}, {name: "deleteTopic", text: "Delete", click: deleteTopic}], width: 360}
             ],
             pageable: true,
             toolbar: kendo.template($("#toolbarTemplate").html()),
@@ -111,6 +110,22 @@
             wnd.open();
         });
         wnd.title('Edit Test Topic').center().open();
+    }
+
+    function deleteTopic(e) {
+        e.preventDefault();
+        kendo.ui.progress(wnd.element, true);
+
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        wnd.refresh({
+            url: '${createLink(action:'deleteForm')}',
+            data: {id: dataItem.id}
+        });
+        wnd.bind("refresh", function () {
+            wnd.center();
+            wnd.open();
+        });
+        wnd.title('Delete Test Topic').center().open();
     }
 
     function addChildTopic(e) {

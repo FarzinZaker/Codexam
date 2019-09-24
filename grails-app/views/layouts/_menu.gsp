@@ -8,7 +8,15 @@
                     <a href="${createLink(controller: 'difficulty', action: 'list')}">Difficulty Levels</a>
                 </li>
                 <li>
-                    <a href="${createLink(controller: 'topic', action: 'list')}">Test Topics</a>
+                    Test Topics
+                    <ul>
+                        <li>
+                            <a href="${createLink(controller: 'topic', action: 'list')}">Grid View</a>
+                        </li>
+                        <li>
+                            <a href="${createLink(controller: 'topic', action: 'tree')}">Tree View</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </li>
@@ -16,7 +24,13 @@
             Questions
             <ul>
                 <g:each in="${Topic.findAllByParentIsNullAndDeleted(false).sort { it.name }}" var="topic">
-                    <g:render template="/layouts/topicMenu" model="${[topic: topic]}"/>
+                    <g:render template="/layouts/topicMenu" model="${[topic: topic, children: false]}"/>
+                </g:each>
+                <li class="k-separator"></li>
+                <g:each in="${Topic.findAllByParentIsNullAndDeleted(false).sort { it.name }}" var="rootTopic">
+                    <g:each in="${Topic.findAllByParentAndDeleted(rootTopic, false).sort { it.name }}" var="topic">
+                        <g:render template="/layouts/topicMenu" model="${[topic: topic, children: true]}"/>
+                    </g:each>
                 </g:each>
             </ul>
         </li>

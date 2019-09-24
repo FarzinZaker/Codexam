@@ -23,7 +23,7 @@ class QuestionController {
 
         def list
         def topic = Topic.get(params.id)
-        def questionIds = QuestionTopic.findAllByTopic(topic)?.collect { it.question?.id }
+        def questionIds = QuestionTopic.findAllByTopicInList([topic] + topic.allChildren)?.collect { it.question?.id }
         list = questionIds ? Question.findAllByIdInListAndDeleted(questionIds, false, parameters) : []
         value.total = questionIds ? Question.countByIdInListAndDeleted(questionIds, false) : 0
 
@@ -35,6 +35,9 @@ class QuestionController {
                     type       : message(code: record?.toString()?.split(':')?.find()?.trim()),
                     timeLimit  : record.timeLimit,
                     score      : record.score,
+//                    topics     : QuestionTopic.findAllByQuestion(record)?.findAll { !it.topic.deleted }?.collect {
+//                        it.topic?.name
+//                    }?.join(' ,'),
                     dateCreated: record.dateCreated,
                     lastUpdated: record.lastUpdated
             ]
@@ -46,7 +49,9 @@ class QuestionController {
     def form() {
         [
                 question: params.id ? Question.get(params.id) : new MultipleChoiceQuestion(),
-                types   : grailsApplication.getArtefacts("Domain").clazz.name*.toString().findAll { it.startsWith('codxam.questions.') && it.endsWith('Question') }
+                types   : grailsApplication.getArtefacts("Domain").clazz.name*.toString().findAll {
+                    it.startsWith('codxam.questions.') && it.endsWith('Question')
+                }
         ]
     }
 
@@ -78,7 +83,9 @@ class QuestionController {
                 def options = params.options
 
                 //removed choices
-                def removedChoices = mcQuestion.choices?.findAll { !options.id.contains(it.id?.toString()) }?.collect { it.id }
+                def removedChoices = mcQuestion.choices?.findAll { !options.id.contains(it.id?.toString()) }?.collect {
+                    it.id
+                }
                 if (removedChoices)
                     QuestionChoice.findAllByQuestionAndIdInListAndDeleted(mcQuestion, removedChoices, false).each {
                         it.deleted = true
@@ -128,7 +135,9 @@ class QuestionController {
     }
 
     def listAnswerTypes() {
-        def data = grailsApplication.getArtefacts("Domain").clazz.name*.toString().findAll { it.startsWith('codxam.questions.') && it.endsWith('Question') }.collect {
+        def data = grailsApplication.getArtefacts("Domain").clazz.name*.toString().findAll {
+            it.startsWith('codxam.questions.') && it.endsWith('Question')
+        }.collect {
             [name: message(code: it), id: it]
         }
         render(data as JSON)

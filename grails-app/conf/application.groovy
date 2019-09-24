@@ -3,10 +3,10 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'codxam.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'codxam.UserRole'
 grails.plugin.springsecurity.authority.className = 'codxam.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-        [pattern: '/', access: ['permitAll']],
+//        [pattern: '/', access: ['permitAll']],
         [pattern: '/error', access: ['permitAll']],
-        [pattern: '/index', access: ['permitAll']],
-        [pattern: '/index.gsp', access: ['permitAll']],
+//        [pattern: '/index', access: ['permitAll']],
+//        [pattern: '/index.gsp', access: ['permitAll']],
         [pattern: '/shutdown', access: ['permitAll']],
         [pattern: '/assets/**', access: ['permitAll']],
         [pattern: '/test/**', access: ['permitAll']],

@@ -688,29 +688,38 @@ h1 {
 }
 
 .progress-bar {
-  width: 100%;
-  vertical-align: bottom;
+  div {
+    padding-top: 10px;
+    text-align: left;
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
 
-  tr {
-    td {
-      border-bottom: 4px solid Transparent;
-      height: 34px;
+  table {
+    width: 100%;
+    vertical-align: bottom;
 
-      &.done {
-        border-bottom-color: #8BC34A;
-      }
+    tr {
+      td {
+        cursor: pointer;
+        border-bottom: 4px solid Transparent;
 
-      &.current {
-        border-bottom-color: #FF9800;
-        font-size: 11px;
-
-        b {
-          font-size: 16px;
+        &.done {
+          border-bottom-color: #8BC34A;
         }
-      }
 
-      &.pending {
-        border-bottom-color: #90A4AE;
+        &.current {
+          border-bottom-color: #FF9800;
+          font-size: 11px;
+
+          b {
+            font-size: 16px;
+          }
+        }
+
+        &.pending {
+          border-bottom-color: #90A4AE;
+        }
       }
     }
   }
@@ -788,6 +797,7 @@ a {
   border-top: 1px solid #90A4AE;
   margin-top: 50px;
   padding-top: 15px;
+  padding-bottom: 15px;
   color: #607D8B;
 
   * {
@@ -823,4 +833,61 @@ p {
 
 li {
   line-height: 24px;
+}
+
+.questions-flag {
+  font-size: 11px;
+  display: inline-block;
+  color: white;
+  background-color: #009688;
+  padding-right: 7px;
+  padding-left: 7px;
+  border-radius: 3px;
+}
+
+.questions-flag a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.single-topic-questions-flag {
+  font-size: 10px;
+  display: inline-block;
+  color: white;
+  background-color: #E91E63;
+  padding-right: 7px;
+  padding-left: 7px;
+  border-radius: 3px;
+}
+
+.k-window {
+  h3, h4 {
+    margin-left: 15px;
+  }
+}
+
+.option-list {
+  margin: 0 15px;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: scroll;
+
+  li {
+    list-style: none;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background: white;
+    }
+  }
+}
+
+.k-widget.k-tooltip-validation {
+  display: block;
+  text-align: left;
+  margin-bottom: 15px;
 }
