@@ -13,4 +13,8 @@ class TextAnswer extends Answer {
     static constraints = {
         body nullable: true
     }
+
+    transient boolean getAnswered() {
+        body?.trim()
+    }
 }

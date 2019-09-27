@@ -2,12 +2,12 @@
 
 <script>
     $(document).ready(function () {
-        var clock = $('.count-down').FlipClock(60 * ${timeLimit}, {
+        var clock = $('.count-down').FlipClock(3600 * ${remainingTime.hours} +60 * ${remainingTime.minutes} + ${remainingTime.seconds}, {
             countdown: true,
-            clockFace: 'MinuteCounter'
+            clockFace: 'HourlyCounter'
         });
         window.setTimeout(function () {
             console.log("DONE");
-        }, 60 * ${timeLimit/16} * 1000);
+        }, (60 * ${remainingTime.minutes} + ${remainingTime.seconds}) * 1000);
     })
 </script>

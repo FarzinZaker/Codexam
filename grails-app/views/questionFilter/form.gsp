@@ -20,6 +20,11 @@
         </p>
 
         <p>
+            <label for="maxTime">Maximum Time</label>
+            <input name="maxTime" id="maxTime" style="width: 570px;" value="${questionFilter?.maxTime}"/>
+        </p>
+
+        <p>
             <label for="count">Count</label>
             <input name="count" id="count" style="width: 570px;" value="${questionFilter?.count}"/>
         </p>
@@ -71,7 +76,7 @@
             }
         });
 
-        $("#count").kendoNumericTextBox({
+        $("#count, #maxTime").kendoNumericTextBox({
             format: "#",
             min: 1
         });

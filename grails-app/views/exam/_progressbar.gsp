@@ -4,9 +4,10 @@
     </div>
     <table>
         <tr>
-            <g:each in="${(1..total)}" var="index">
-                <td class="${index < current ? 'done' : index == current ? 'current' : 'pending'}"
-                    style="width:${100 / total}%" onclick="showQuestion(${index})">
+            <g:each in="${answers}" var="answer">
+                <td class="${answer.sequence == current ? 'current' : answer.answered ? 'done' : 'pending'}"
+                    style="width:${100 / total}%" onclick="showQuestion(${answer.sequence})">
+                    ${answer.sequence}
                 </td>
             </g:each>
         </tr>

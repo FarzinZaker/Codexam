@@ -1,13 +1,24 @@
 package codxam.answers
 
 import codxam.Answer
-import codxam.Attachment
 
 class FileAnswer extends Answer {
 
-    Attachment file
+    byte[] file
+    String fileFormat
+    String fileName
+
+    static mapping = {
+        file sqlType: 'bytea'
+    }
 
     static constraints = {
         file nullable: true
+        fileFormat nullable: true
+        fileName nullable: true
+    }
+
+    transient boolean getAnswered() {
+        file
     }
 }

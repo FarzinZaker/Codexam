@@ -15,6 +15,8 @@
         <g:if test="${currentQuestion < totalQuestions}">
             <a href="${createLink(controller: 'exam', action: 'next', id: examSheet.id)}" class="k-button">Next</a>
         </g:if>
+        <input type="button" class="k-button k-primary" id="finish-button" value="Finish The Test">
+
         <input type="submit" name="submit" class="k-button k-primary" value="Submit Answer" style="float:left"/>
     </div>
 </form>
@@ -36,6 +38,14 @@
     $(document).ready(function(e){
         $('#answerForm').submit(function(e){
             validateForm(e);
+        });
+
+        $("#finish-button").on("click", function () {
+            kendo.confirm("Please consider the following before confirmation:<ul><li>This will not submit you current answer.</li><li>After finishing the test, you will not be able to modify any of you submitted answers or answer any remaining question.</li></p>").then(function () {
+                window.location.href = '${createLink(controller: 'exam', action: 'finish', id: examSheet.id)}';
+            }, function () {
+            });
+            $('.k-confirm .k-window-title.k-dialog-title').text('Are you sure that you want to finish the test?');
         });
     })
 </script>

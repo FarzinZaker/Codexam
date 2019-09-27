@@ -10,4 +10,8 @@ class MultipleChoiceAnswer extends Answer {
     static constraints = {
         choice nullable: true
     }
+
+    transient boolean getAnswered(){
+        choice
+    }
 }

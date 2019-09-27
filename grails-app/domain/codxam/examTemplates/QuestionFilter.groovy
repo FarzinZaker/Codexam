@@ -10,6 +10,7 @@ class QuestionFilter {
     Integer count
     Difficulty difficulty
     String questionType
+    Integer maxTime
     Integer resultsCount
 
     Date dateCreated
@@ -18,6 +19,7 @@ class QuestionFilter {
 
     static constraints = {
         resultsCount nullable: true
+        maxTime nullable: true
     }
 
     transient Boolean getIsValid() {

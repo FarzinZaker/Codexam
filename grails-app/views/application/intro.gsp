@@ -33,7 +33,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 intro">
             <div>
                 <p>
-                    Congradulations! You have been invited to take an online test designed by Aclate for
+                    Congratulations! You have been invited to take an online test designed by Aclate for
                 </p>
 
                 <h2>${examTemplate?.name}</h2>

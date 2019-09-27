@@ -34,12 +34,13 @@ class QuestionFilterController {
                     questionType: message(code: it.questionType),
                     difficulty  : it.difficulty?.name,
                     count       : it.count,
+                    maxTime     : (it.maxTime ?: 0) * it.count,
                     resultsCount: it.resultsCount,
                     isValid     : it.isValid,
                     dateCreated : it.dateCreated,
                     lastUpdated : it.lastUpdated
             ]
-        }
+        }.sort { it.difficulty }.sort { it.questionType }
 
         render value as JSON
     }

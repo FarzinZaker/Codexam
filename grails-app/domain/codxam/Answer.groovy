@@ -15,6 +15,10 @@ class Answer {
     Date lastUpdated
     Boolean deleted = false
 
+    transient boolean getAnswered(){
+        false
+    }
+
     static constraints = {
         startDate nullable: true
         endDate nullable: true

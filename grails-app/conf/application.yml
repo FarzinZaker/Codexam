@@ -125,6 +125,8 @@ environments:
         validationQuery: SELECT 1
     images:
       path: C:/DevDesk/Codxam/images
+    recaptcha:
+      enabled: true
   test:
     dataSource:
       dbCreate: update
@@ -153,6 +155,8 @@ environments:
         defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
     images:
       path: /home/images
+    recaptcha:
+      enabled: true
 ---
 selenium:
   chrome:

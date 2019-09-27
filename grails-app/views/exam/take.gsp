@@ -23,14 +23,17 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="info-bar">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-10">
-                            <g:render template="progressbar"
-                                      model="${[total: totalQuestions, current: currentQuestion]}"/>
-                        </div>
 
-                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-2">
-                            <g:render template="countDown" model="${[timeLimit: question.timeLimit]}"/>
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <g:render template="countDown" model="${[remainingTime: remainingTime]}"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <g:render template="progressbar"
+                                      model="${[total: totalQuestions, current: currentQuestion, answers: answers]}"/>
                         </div>
                     </div>
                 </div>
@@ -44,7 +47,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <h1>${question.title}</h1>
-
+            <g:render template="questionMeta" model="${[question: question]}"/>
             <div class="question">
                 <format:html value="${question?.body}"/>
             </div>

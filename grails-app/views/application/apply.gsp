@@ -105,6 +105,19 @@
                     </p>
                 </div>
 
+                <g:if test="${flash.message}">
+                    <p>
+
+                    </p>
+
+                    <div class="error">
+                        ${flash.message}
+                    </div>
+                </g:if>
+                <p>
+                    <recaptcha:recaptcha/>
+                </p>
+
                 <div class="tool-bar">
                     <input type="submit" id="submit" class="k-button k-primary" value="Start My Test"
                            onsubmit="return validateForm();"/>

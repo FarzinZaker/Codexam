@@ -24,6 +24,8 @@ class QuestionFilterService {
                 'in'('topic', [filter.topic] + filter.topic.allChildren)
                 question {
                     eq('difficulty', filter.difficulty)
+                    lte('timeLimit', filter.maxTime)
+                    gt('timeLimit', 0)
                 }
                 projections {
                     property('question')
@@ -56,6 +58,8 @@ class QuestionFilterService {
                 'in'('topic', [filter.topic] + filter.topic.allChildren)
                 question {
                     eq('difficulty', filter.difficulty)
+                    lte('timeLimit', filter.maxTime)
+                    gt('timeLimit', 0)
                 }
                 projections {
                     property('question')
@@ -77,7 +81,7 @@ class QuestionFilterService {
         //multiple choice
         def qList = questions.findAll { it.toString().contains('MultipleChoiceQuestion') }
         Collections.shuffle(qList)
-        qList.each { Question question ->
+        qList.sort { it.timeLimit }.each { Question question ->
             Answer answer = new MultipleChoiceAnswer()
             answer.examSheet = examSheet
             answer.question = question
@@ -89,7 +93,7 @@ class QuestionFilterService {
         //short answer
         qList = questions.findAll { it.toString().contains('ShortAnswerQuestion') }
         Collections.shuffle(qList)
-        qList.each { Question question ->
+        qList.sort { it.timeLimit }.each { Question question ->
             Answer answer = new TextAnswer()
             answer.examSheet = examSheet
             answer.question = question
@@ -101,7 +105,7 @@ class QuestionFilterService {
         //file upload
         qList = questions.findAll { it.toString().contains('FileQuestion') }
         Collections.shuffle(qList)
-        qList.each { Question question ->
+        qList.sort { it.timeLimit }.each { Question question ->
             Answer answer = new FileAnswer()
             answer.examSheet = examSheet
             answer.question = question

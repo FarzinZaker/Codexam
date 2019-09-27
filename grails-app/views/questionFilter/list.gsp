@@ -68,6 +68,7 @@
                         questionType: {type: "string", validation: {required: true}},
                         difficulty: {type: "string", validation: {required: true}},
                         count: {type: "integer", validation: {required: true}},
+                        maxTime: {type: "integer", validation: {required: true}},
                         resultsCount: {type: "integer"},
                         isValid: {type: "bool"},
                         dateCreated: {type: "date", editable: false, nullable: false},
@@ -77,10 +78,14 @@
             },
             group: {
                 field: "topic", aggregates: [
-                    {field: "count", aggregate: "sum"}
+                    {field: "count", aggregate: "sum"},
+                    {field: "maxTime", aggregate: "sum"}
                 ]
             },
-            aggregate: [{field: "count", aggregate: "sum"}],
+            aggregate: [
+                {field: "count", aggregate: "sum"},
+                {field: "maxTime", aggregate: "sum"}
+                ],
             sort: [
                 {field: "questionType"},
                 {field: "difficulty"}
@@ -104,6 +109,12 @@
                     title: "Count",
                     aggregates: ["sum"],
                     footerTemplate: "#=sum# Questions"
+                },
+                {
+                    field: "maxTime",
+                    title: "Max Time",
+                    aggregates: ["sum"],
+                    footerTemplate: "#=sum# Minutes"
                 },
                 {field: "resultsCount", title: "Results"},
                 {field: "isValid", title: "Valid", template: enabledTemplate},

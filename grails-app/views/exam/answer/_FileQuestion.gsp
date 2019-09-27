@@ -1,6 +1,13 @@
 <h2>
     Upload the answer file
 </h2>
+<g:if test="${answer.answered}">
+    Uploaded file:
+    <div class="uploaded-file">
+        <span class="k-icon k-i-file k-i-${answer.fileFormat}"></span> <span>${answer.fileName}</span>
+    </div>
+    <div class="overwrite-file">Submit a new answer:</div>
+</g:if>
 <span class="k-widget k-tooltip k-tooltip-validation k-invalid-msg" style="display: none" data-for="answer" role="alert"
       id="validatorMessage"><span class="k-icon k-i-warning"></span> Please upload the answer file first.</span>
 <span class="k-widget k-tooltip k-tooltip-validation k-invalid-msg" style="display: none" data-for="answer" role="alert"
