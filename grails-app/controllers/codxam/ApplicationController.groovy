@@ -25,6 +25,7 @@ class ApplicationController {
         if (params.cv) {
             applicant.cv = params.cv.bytes
             applicant.cvFormat = params.cv.contentType
+            applicant.cvName = params.cv.filename
         }
         applicant.save()
 

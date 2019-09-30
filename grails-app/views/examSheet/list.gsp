@@ -103,6 +103,10 @@
     }
 
     function viewDetails(e) {
+        e.preventDefault();
+
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        window.location.href = "${createLink(controller: 'examSheet', action: 'details')}/" + dataItem.id;
     }
 
     function markQuestions(e) {

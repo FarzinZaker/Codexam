@@ -10,6 +10,7 @@ class Applicant {
     TimeZone timeZone
     byte[] cv
     String cvFormat
+    String cvName
 
     static mapping = {
         cv sqlType: 'bytea'
@@ -19,5 +20,6 @@ class Applicant {
         skype nullable: true
         cv nullable: true
         cvFormat nullable: true
+        cvName nullable: true
     }
 }

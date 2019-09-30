@@ -4,7 +4,8 @@
     <g:each in="${TimeZone.findAllByDeleted(false).sort {
         it.difference.replace('GMT', '').replace(':', '').toInteger()
     }}" var="timeZone">
-        <option value="${timeZone.id}">(${timeZone.difference}) ${timeZone.location}</option>
+        <option ${timeZone?.id == value ? 'selected' : ''}
+                value="${timeZone.id}">(${timeZone.difference}) ${timeZone.location}</option>
     </g:each>
 </select>
 
@@ -15,5 +16,8 @@
             filter: "contains",
             autoBind: true
         });
+        <g:if test="${readonly}">
+        $('#${id}').data('kendoComboBox').readonly(true);
+        </g:if>
     })();
 </script>

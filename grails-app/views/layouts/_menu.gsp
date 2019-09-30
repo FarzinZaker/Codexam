@@ -35,15 +35,7 @@
             </ul>
         </li>
         <li>
-            Exams
-            <ul>
-                <li>
-                    <a href="${createLink(controller: 'examTemplate', action: 'list')}">Templates</a>
-                </li>
-                <li>
-                    <a href="${createLink(controller: 'exam', action: 'list')}">Running</a>
-                </li>
-            </ul>
+            <a href="${createLink(controller: 'examTemplate', action: 'list')}">Exams</a>
         </li>
         <li>
             User Management
