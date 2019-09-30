@@ -7,7 +7,7 @@ import grails.plugin.springsecurity.annotation.Secured
 import groovy.time.TimeCategory
 import groovy.time.TimeDuration
 
-@Secured([Roles.ADMIN])
+@Secured([Roles.ADMIN, Roles.EXAMINER])
 class MarkController {
 
     def it() {

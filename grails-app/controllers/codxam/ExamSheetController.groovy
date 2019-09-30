@@ -4,7 +4,7 @@ package codxam
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured([Roles.ADMIN])
+@Secured([Roles.ADMIN, Roles.EXAMINER])
 class ExamSheetController {
 
     def list() {
