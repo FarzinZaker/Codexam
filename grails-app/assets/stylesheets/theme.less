@@ -488,8 +488,8 @@ h1 {
 }
 
 .error {
-  border-top:1px solid #D32F2F;
-  border-bottom:1px solid #D32F2F;
+  border-top: 1px solid #D32F2F;
+  border-bottom: 1px solid #D32F2F;
   background-color: #FFCDD2;
   padding: 10px;
   //font-size: 13px;
@@ -656,6 +656,18 @@ h1 {
   background-image: none !important;
 }
 
+.markPanel {
+  background: #ECEFF1;
+  margin-top: 20px;
+  padding: 15px;
+
+  & + .toolbar {
+    text-align: right;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}
+
 .answerSheet {
   background: #ECEFF1;
   margin-top: 20px;
@@ -693,6 +705,11 @@ h1 {
 }
 
 .progress-bar {
+
+  &.marking {
+    margin-top: 55px;
+  }
+
   div {
     margin-top: -15px;
     text-align: left;
@@ -933,6 +950,7 @@ li {
 }
 
 .uploaded-file {
+  display: block;
   font-size: 12px;
   margin-bottom: 25px;
   padding: 10px;
@@ -962,7 +980,7 @@ li {
   width: 280px;
   height: 280px;
   background-color: #F5F5F5;
-  margin-top:20px;
+  margin-top: 20px;
 
   .big {
     display: block !important;

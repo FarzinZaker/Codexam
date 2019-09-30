@@ -15,6 +15,7 @@ class ExamController {
             examSheet.currentQuestionIndex = params.question?.toString()?.toInteger()
             examSheet.save(flush: true)
             redirect(action: 'take', id: examSheet.id)
+            return
         }
 
         def totalQuestions = Answer.countByExamSheetAndDeleted(examSheet, false)

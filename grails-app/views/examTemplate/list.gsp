@@ -77,7 +77,7 @@
                 {field: "link", title: "Link", template: "<a href='#: link #' target='_blank'>#: link #</a>"},
                 // {field: "dateCreated", title: "Created", format: "{0:MM/dd/yyyy h:mm tt}"},
                 // {field: "lastUpdated", title: "Updated", format: "{0:MM/dd/yyyy h:mm tt}"},
-                {command: [{text: "Edit", click: editExamTemplate}, {text: "Filters", click: listFilters}, "destroy"], title: " ", width: "330px"}
+                {command: [{text: "Applicants", click: viewApplicants},{text: "Edit", click: editExamTemplate}, {text: "Filters", click: listFilters}, "destroy"], title: " ", width: "470px"}
             ],
             editable: "popup",
             edit: function (e) {
@@ -130,6 +130,13 @@
 
         var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
         window.location.href = "${createLink(controller:'questionFilter', action:'list')}/" + dataItem.id;
+    }
+
+    function viewApplicants(e) {
+        e.preventDefault();
+
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        window.location.href = "${createLink(controller:'examSheet', action:'list')}/" + dataItem.id;
     }
 </script>
 </body>

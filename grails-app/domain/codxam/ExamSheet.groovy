@@ -5,6 +5,7 @@ class ExamSheet {
     Date startDate
     Date endDate
     Integer currentQuestionIndex
+    Integer currentMarkingIndex
     Integer totalTime
 
     ExamTemplate examTemplate
@@ -51,5 +52,6 @@ class ExamSheet {
         startDate nullable: true
         endDate nullable: true
         totalTime nullable: true
+        currentMarkingIndex nullable: true
     }
 }
