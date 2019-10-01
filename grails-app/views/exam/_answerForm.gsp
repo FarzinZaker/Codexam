@@ -15,7 +15,7 @@
         <g:if test="${currentQuestion < totalQuestions}">
             <a href="${createLink(controller: 'exam', action: 'next', id: examSheet.id)}" class="k-button">Next</a>
         </g:if>
-        <input type="button" class="k-button k-primary" id="finish-button" value="Finish The Test">
+        <input type="button" class="k-button k-danger" id="finish-button" value="Finish The Test">
 
         <input type="submit" name="submit" class="k-button k-primary" value="Submit Answer" style="float:left"/>
     </div>

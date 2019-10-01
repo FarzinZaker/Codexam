@@ -71,7 +71,7 @@
                 {field: "minimumSalary", title: "Salary", width: "100px"},
                 {field: "score", title: "Score", width: "150px"},
                 {
-                    template: "#if (notMarked > 0) {# <a class=\'k-button\' href=\'${createLink(controller:'mark', action: 'it')}/#:id#\'><span class='k-icon k-i-check-outline'></span></a> #}# <a class='k-button' href='javascript:viewDetails(#:id#)'><span class='k-icon k-i-zoom-in'></span></a> <a class='k-button' href='javascript:deleteApplicant(#:id#)'><span class='k-icon k-i-trash'></span></a>",
+                    template: "#if (notMarked > 0) {# <a class=\'k-button\' href=\'${createLink(controller:'mark', action: 'it')}/#:id#\'><span class='k-icon k-i-check-outline'></span></a> #}# <a class='k-button k-primary' href='javascript:viewDetails(#:id#)'><span class='k-icon k-i-zoom-in'></span></a> <a class='k-button k-danger' href='javascript:deleteApplicant(#:id#)'><span class='k-icon k-i-trash'></span></a>",
                     field: "id",
                     title: "Actions",
                     width: "260px"
