@@ -63,6 +63,18 @@
                 </p>
 
                 <p>
+                    <label for="minimumSalary">Minimum Salary / Hour</label>
+                    <input type="text" name="minimumSalary" id="minimumSalary" style="width:100%" required
+                           data-required-msg="Minimum Salary is required."/>
+                    <script>
+                        $("#minimumSalary").kendoNumericTextBox({
+                            format: "$# / Hour",
+                            min: 1
+                        });
+                    </script>
+                </p>
+
+                <p>
                     <label for="cv">CV</label>
 
                     <span style="width: 400px;display: block;margin-top:5px;">

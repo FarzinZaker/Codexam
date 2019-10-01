@@ -36,6 +36,18 @@
                   model="${[name: 'timeZone.id', id: 'timeZone', style: 'width:100%', value: applicant?.timeZone?.id, readonly: true]}"/>
     </p>
 
+    <p>
+        <label for="minimumSalary">Minimum Salary / Hour</label>
+        <input type="text" name="minimumSalary" id="minimumSalary" style="width:100%" value="${applicant?.minimumSalary}"/>
+        <script>
+            $("#minimumSalary").kendoNumericTextBox({
+                format: "$# / Hour",
+                min: 1
+            });
+            $("#minimumSalary").data('kendoNumericTextBox').readonly();
+        </script>
+    </p>
+
     <g:if test="${applicant?.cv}">
         <div class="tool-bar">
             <a href="${createLink(controller: 'examSheet', action: 'resume', id: applicant?.id)}"

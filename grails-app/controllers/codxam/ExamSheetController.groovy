@@ -17,13 +17,14 @@ class ExamSheetController {
         def rank = 1
         data = data.collect {
             [
-                    id       : it.id,
-                    rank     : rank++,
-                    name     : "${it.applicant?.firstName} ${it.applicant?.lastName}",
-                    country  : "${it.applicant?.country?.name} (${it.applicant?.timeZone?.difference})",
-                    score    : "%${Math.round((it.markedMark ?: 0) * 100 / (it.markedScore ?: 1))} (${it.markedMark ?: 0} / ${it.markedScore ?: 0})",
-                    notMarked: it.unMarkedList?.size(),
-                    endDate  : it.endDate
+                    id           : it.id,
+                    rank         : rank++,
+                    name         : "${it.applicant?.firstName} ${it.applicant?.lastName}",
+                    country      : "${it.applicant?.country?.name} (${it.applicant?.timeZone?.difference})",
+                    score        : "%${Math.round((it.markedMark ?: 0) * 100 / (it.markedScore ?: 1))} (${it.markedMark ?: 0} / ${it.markedScore ?: 0})",
+                    notMarked    : it.unMarkedList?.size(),
+                    endDate      : it.endDate,
+                    minimumSalary: it.applicant?.minimumSalary ? "\$${it.applicant?.minimumSalary}/h" : ''
             ]
         }
         def total = ExamSheet.countByExamTemplateAndDeleted(examTemplate, false)

@@ -51,6 +51,7 @@
                         name: {validation: {required: true}},
                         country: {validation: {required: true}},
                         score: {validation: {required: true}},
+                        minimumSalary: {validation: {required: true}},
                         notMarked: {validation: {required: true}},
                         endDate: {type: 'date', editable: false, nullable: false}
                     }
@@ -67,19 +68,13 @@
                 {field: "name", title: "Name"},
                 {field: "country", title: "Country"},
                 {field: "endDate", title: "Date", format: "{0:MM/dd/yyyy}"},
+                {field: "minimumSalary", title: "Salary", width: "100px"},
                 {field: "score", title: "Score", width: "150px"},
                 {
-                    template: "#if (notMarked > 0) {# <a class=\'k-button\' href=\'${createLink(controller:'mark', action: 'it')}/#:id#\'>Mark (#:notMarked#)</a> #}#",
+                    template: "#if (notMarked > 0) {# <a class=\'k-button\' href=\'${createLink(controller:'mark', action: 'it')}/#:id#\'><span class='k-icon k-i-check-outline'></span></a> #}# <a class='k-button' href='javascript:viewDetails(#:id#)'><span class='k-icon k-i-zoom-in'></span></a> <a class='k-button' href='javascript:deleteApplicant(#:id#)'><span class='k-icon k-i-trash'></span></a>",
                     field: "id",
-                    title: "Mark",
-                    width: "160px"
-                },
-                {
-                    command: [{text: "Details", click: viewDetails}, {
-                        name: "deleteApplicant",
-                        text: "Delete",
-                        click: deleteApplicant
-                    }], title: " ", width: "260px"
+                    title: "Actions",
+                    width: "260px"
                 }
             ],
             editable: "popup"
@@ -102,18 +97,12 @@
         });
     }
 
-    function viewDetails(e) {
-        e.preventDefault();
-
-        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-        window.location.href = "${createLink(controller: 'examSheet', action: 'details')}/" + dataItem.id;
+    function viewDetails(id) {
+        window.location.href = "${createLink(controller: 'examSheet', action: 'details')}/" + id;
     }
 
-    function markQuestions(e) {
-        e.preventDefault();
-
-        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-        window.location.href = "${createLink(controller: 'mark', action: 'it')}/" + dataItem.id;
+    function markQuestions(id) {
+        window.location.href = "${createLink(controller: 'mark', action: 'it')}/" + id;
     }
 </script>
 

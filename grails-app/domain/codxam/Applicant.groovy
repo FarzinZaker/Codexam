@@ -11,6 +11,7 @@ class Applicant {
     byte[] cv
     String cvFormat
     String cvName
+    Integer minimumSalary
 
     static mapping = {
         cv sqlType: 'bytea'
@@ -21,5 +22,6 @@ class Applicant {
         cv nullable: true
         cvFormat nullable: true
         cvName nullable: true
+        minimumSalary nullable: true
     }
 }
