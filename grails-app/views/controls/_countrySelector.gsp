@@ -11,7 +11,15 @@
         $('#${id}').kendoComboBox({
             placeholder: "Select Country",
             filter: "contains",
-            autoBind: true
+            autoBind: true,
+            change : function (e) {
+                var widget = e.sender;
+
+                if (widget.value() && widget.select() === -1) {
+                    //custom has been selected
+                    widget.value(""); //reset widget
+                }
+        }
         });
         <g:if test="${readonly}">
         $('#${id}').data('kendoComboBox').readonly(true);
