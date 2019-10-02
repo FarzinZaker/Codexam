@@ -20,58 +20,43 @@
         </tr>
     </table>
 </div>
-<table style="width: 100%;" cellpadding="0" cellspacing="0" class="topic-scores">
-    <tr>
-        <th>
-            Topic
-        </th>
-        <th>
-            Correct Answers
-        </th>
-        <th>
-            Wrong Answers
-        </th>
-        <th>
-            Skipped Questions
-        </th>
-        <th>
-            Total Mark
-        </th>
-        <th>
-            Total Possible Score
-        </th>
-        <th>
-            Percentage
-        </th>
-    </tr>
-    <g:each in="${topicScores?.sort { -(it.value.mark * 100 / it.value.score) }}" var="topicScore" status="index">
-        <tr class="${index % 2 ? 'even' : 'odd'}">
-            <td>
-                <b>${topicScore.key}</b>
-            </td>
-            <td>
-                <b>${topicScore.value.correctAnswers}</b>
-            </td>
-            <td>
-                ${topicScore.value.wrongAnswers}
-            </td>
-            <td>
-                ${topicScore.value.skipped}
-            </td>
-            <td>
-                <b>${topicScore.value.mark}</b>
-            </td>
-            <td>
-                ${topicScore.value.score}
-            </td>
-            <td>
-                <b>%${Math.round(topicScore.value.mark * 100 / topicScore.value.score)}</b>
-            </td>
-        </tr>
-    </g:each>
-</table>
 
+<div id="detailsTabstript" style="margin-right: -15px;margin-left:-15px;">
+    <ul>
+        <li class="k-state-active">
+            Topics
+        </li>
+        <li>
+            Difficulty Levels
+        </li>
+        <li>
+            Question Types
+        </li>
+    </ul>
+
+    <div>
+        <g:render template="resultsDetails" model="${[scores: topicScores, title: 'Topic']}"/>
+    </div>
+
+    <div>
+        <g:render template="resultsDetails" model="${[scores: difficultyScores, title: 'Difficulty Level']}"/>
+    </div>
+
+    <div>
+        <g:render template="resultsDetails" model="${[scores: questionTypeScores, title: 'Question Type']}"/>
+    </div>
+</div>
 <script>
+    $(document).ready(function () {
+        $("#detailsTabstript").kendoTabStrip({
+            animation: {
+                open: {
+                    effects: "fadeIn"
+                }
+            }
+        });
+    });
+
     function createChart() {
         $("#chart").kendoChart({
             title: {

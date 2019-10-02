@@ -23,7 +23,8 @@
     </div>
 
     <div>
-        <g:render template="results" model="${[examSheet: examSheet, topicScores: topicScores]}"/>
+        <g:render template="results"
+                  model="${[examSheet: examSheet, topicScores: topicScores, difficultyScores: difficultyScores, questionTypeScores: questionTypeScores]}"/>
     </div>
 </div>
 <script>

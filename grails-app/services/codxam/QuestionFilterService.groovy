@@ -114,6 +114,9 @@ class QuestionFilterService {
                 println answer.errors
         }
 
-        examSheet.save(flush: true)
+        if (!examSheet.save(flush: true))
+            println examSheet.errors
+
+        examSheet
     }
 }

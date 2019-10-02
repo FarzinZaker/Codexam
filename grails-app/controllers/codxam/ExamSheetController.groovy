@@ -40,8 +40,14 @@ class ExamSheetController {
 
     def details() {
         def examSheet = ExamSheet.get(params.id)
-        def topicScores = [:]
         def answers = Answer.findAllByExamSheetAndDeleted(examSheet, false)?.sort { it.sequence }
+
+        def topicScores = [:]
+        def difficultyScores = [:]
+        def questionTypeScores = [
+                'Multiple Choice': [correctAnswers: 0, wrongAnswers: 0, skipped: 0, notMarked: 0, mark: 0, score: 0],
+                'Short Answer'   : [correctAnswers: 0, wrongAnswers: 0, skipped: 0, notMarked: 0, mark: 0, score: 0],
+                'File Upload'    : [correctAnswers: 0, wrongAnswers: 0, skipped: 0, notMarked: 0, mark: 0, score: 0]]
         answers.each { answer ->
             def topics = QuestionTopic.findAllByQuestion(answer.question).collect { it.topic }
             topics.each { topic ->
@@ -59,9 +65,46 @@ class ExamSheetController {
                     topicScores[topic.name].skipped++
                 topicScores[topic.name].score += answer.question?.score ?: 0
             }
+
+
+            def difficulty = answer.question.difficulty
+            if (!difficultyScores.containsKey(difficulty.name))
+                difficultyScores.put(difficulty.name, [correctAnswers: 0, wrongAnswers: 0, skipped: 0, notMarked: 0, mark: 0, score: 0])
+            if (answer.answered) {
+                if (answer.mark == null)
+                    difficultyScores[difficulty.name].notMarked++
+                else if (answer.mark == 0)
+                    difficultyScores[difficulty.name].wrongAnswers++
+                else
+                    difficultyScores[difficulty.name].correctAnswers++
+                difficultyScores[difficulty.name].mark += answer.mark ?: 0
+            } else
+                difficultyScores[difficulty.name].skipped++
+            difficultyScores[difficulty.name].score += answer.question?.score ?: 0
+
+
+            def questionRecord = questionTypeScores['Multiple Choice']
+            if (answer.toString().contains('TextAnswer'))
+                questionRecord = questionTypeScores['Short Answer']
+            if (answer.toString().contains('FileAnswer'))
+                questionRecord = questionTypeScores['File Upload']
+            if (answer.answered) {
+                if (answer.mark == null)
+                    questionRecord.notMarked++
+                else if (answer.mark == 0)
+                    questionRecord.wrongAnswers++
+                else
+                    questionRecord.correctAnswers++
+                questionRecord.mark += answer.mark ?: 0
+            } else
+                questionRecord.skipped++
+            questionRecord.score += answer.question?.score ?: 0
         }
         [
-                examSheet: examSheet, topicScores: topicScores
+                examSheet         : examSheet,
+                topicScores       : topicScores,
+                difficultyScores  : difficultyScores,
+                questionTypeScores: questionTypeScores
         ]
     }
 
