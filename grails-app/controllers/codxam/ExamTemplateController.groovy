@@ -27,7 +27,7 @@ class ExamTemplateController {
             [
                     id         : it.id,
                     name       : it.name,
-                    link       : createLink(controller: 'application', action: 'intro', id: it.uniqueId, absolute: true),
+                    link       : createLink(controller: 'application', action: 'intro', id: it.uniqueId, absolute: true)?.replace('http://127.0.0.1:8080', 'https://codxam.aclate.com'),
                     type       : it.class.name,
                     dateCreated: it.dateCreated,
                     lastUpdated: it.lastUpdated
