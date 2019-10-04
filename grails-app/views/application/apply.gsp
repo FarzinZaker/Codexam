@@ -21,9 +21,19 @@
         <h2>${examTemplate?.name}</h2>
     </div>
 
+    <g:if test="${flash.message}">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="error">
+                    ${flash.message}
+                </div>
+            </div>
+        </div>
+    </g:if>
     <div class="row">
         <form action="${createLink(action: 'saveApplication')}" method="POST" autocomplete="off"
               id="applicationForm">
+
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                 <input type="hidden" name="exam.code" value="${params.id}"/>
 
@@ -107,7 +117,7 @@
                         Aclate will contact you via phone, email or skype to invite you for an interview if you pass the initial test.
                     </li>
                     <li>
-                        Submitting an application for the <b>${examTemplate?.name}</b> role does not quarantee that you will be hired or invited for interview.
+                        Submitting an application for the <b>${examTemplate?.name}</b> role does not guarantee that you will be hired or invited for interview.
                     </li>
                 </ul>
             </p>
@@ -117,15 +127,6 @@
                     </p>
                 </div>
 
-                <g:if test="${flash.message}">
-                    <p>
-
-                    </p>
-
-                    <div class="error">
-                        ${flash.message}
-                    </div>
-                </g:if>
                 <p>
                     <recaptcha:recaptcha/>
                 </p>

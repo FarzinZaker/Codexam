@@ -30,6 +30,7 @@
                             <g:render template="countDown" model="${[remainingTime: remainingTime]}"/>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                             <g:render template="progressbar"
@@ -46,10 +47,14 @@
     <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <h1>${question.title}</h1>
             <g:render template="questionMeta" model="${[question: question]}"/>
-            <div class="question">
-                <format:html value="${question?.body}"/>
+            <div class="question-box">
+                <h1>Question<g:if
+                        test="${!question?.body?.replaceAll("<(.|\n)*?>", '')?.startsWith(question?.title)}">: ${question.title}</g:if></h1>
+
+                <div class="question">
+                    <format:html value="${question?.body}"/>
+                </div>
             </div>
             <g:render template="answerForm" model="${[question: question]}"/>
         </div>

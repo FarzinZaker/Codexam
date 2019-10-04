@@ -11,11 +11,16 @@ class EndExamJob {
 
     def execute() {
         ExamSheet.findAllByEndDateIsNullAndTotalTimeIsNotNull().each { examSheet ->
-            use(TimeCategory) {
-                Date expectedEndDate = examSheet.startDate + (examSheet.totalTime).minutes
-                if (expectedEndDate < new Date()) {
-                    examSheet.endDate = expectedEndDate
-                    examSheet.save(flush: true)
+            if (examSheet.totalTime) {
+                use(TimeCategory) {
+                    Date expectedEndDate = examSheet.startDate + (examSheet.totalTime).minutes
+                    if (expectedEndDate < new Date()) {
+                        println expectedEndDate
+                        println new Date()
+                        println expectedEndDate < new Date()
+                        examSheet.endDate = expectedEndDate
+                        examSheet.save(flush: true)
+                    }
                 }
             }
         }

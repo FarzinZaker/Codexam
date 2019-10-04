@@ -30,11 +30,14 @@ class QuestionFilterService {
                 projections {
                     property('question')
                 }
-            }
+            }.unique()
+
             list = list.findAll {
-                !questions.contains(it) &&
+                !questions.collect { it.id }.contains(it.id) &&
+                        !questions.collect { it.title }.contains(it.title) &&
                         it.toString().contains(filter.questionType)
             }
+
             list = list.size > filter.count ? list[0..(filter.count - 1)] : list
 
             filter.resultsCount = list.size()
@@ -43,6 +46,7 @@ class QuestionFilterService {
 
             questions.addAll(list)
         }
+        questions
     }
 
     def createExam(RandomExamTemplate template, Applicant applicant) {
@@ -64,9 +68,10 @@ class QuestionFilterService {
                 projections {
                     property('question')
                 }
-            }
+            }.unique()
             list = list.findAll {
-                !questions.contains(it) &&
+                !questions.collect { it.id }.contains(it.id) &&
+                        !questions.collect { it.title }.contains(it.title) &&
                         it.toString().contains(filter.questionType)
             }
             Collections.shuffle(list)

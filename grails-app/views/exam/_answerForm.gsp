@@ -13,7 +13,7 @@
                class="k-button">Previous</a>
         </g:if>
         <g:if test="${currentQuestion < totalQuestions}">
-            <a href="${createLink(controller: 'exam', action: 'next', id: examSheet.id)}" class="k-button">Next</a>
+            <a href="${createLink(controller: 'exam', action: 'next', id: examSheet.id)}" class="k-button">Skip This Question</a>
         </g:if>
         <input type="button" class="k-button k-danger" id="finish-button" value="Finish The Test">
 

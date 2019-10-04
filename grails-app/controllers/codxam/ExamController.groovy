@@ -48,8 +48,15 @@ class ExamController {
         TimeDuration remainingTime
         use(TimeCategory) {
             Date expectedEndDate = examSheet.startDate + (examSheet.totalTime).minutes
-            if (expectedEndDate < new Date() || examSheet.endDate)
+            if (expectedEndDate < new Date() || (examSheet.endDate && examSheet.endDate < new Date())) {
+                println expectedEndDate
+                println new Date()
+                println expectedEndDate < new Date()
+                println examSheet.endDate
+                println examSheet.endDate < new Date()
+                println examSheet.endDate && examSheet.endDate < new Date()
                 redirect(action: 'results', id: examSheet.id)
+            }
 
             remainingTime = TimeCategory.minus(expectedEndDate, new Date())
         }

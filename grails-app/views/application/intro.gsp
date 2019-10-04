@@ -5,7 +5,7 @@
   Time: 4:48 PM
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="codxam.examTemplates.QuestionFilter" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta name="layout" content="empty"/>
@@ -73,10 +73,17 @@
 
                 <h2>Are you ready?</h2>
 
-                <p>Since this test includes technical questions, make sure that your working environment is ready before starting the test.</p>
+                <p>Since this test includes technical questions, make sure that your working environment including your favorite IDE is ready before starting the test.</p>
+
+                <p>We will ask you questions about:
+                <format:html value="${QuestionFilter.findAllByExamTemplateAndDeleted(examTemplate, false)?.collect {
+                    '<b>' + it.topic.name + '</b>'
+                }?.unique()?.sort()?.join(', ')}"/>
+                </p>
 
                 <div class="tool-bar">
-                    <a href="${createLink(action: 'apply', id: params.id)}" class="k-button k-primary">Start Your Application</a>
+                    <a href="${createLink(action: 'apply', id: params.id)}"
+                       class="k-button k-primary">Start Your Application</a>
                 </div>
             </div>
         </div>
