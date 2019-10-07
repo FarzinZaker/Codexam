@@ -1,4 +1,4 @@
-<%@ page import="codxam.questions.QuestionChoice" %>
+<%@ page import="codxam.QuestionTopic; codxam.questions.QuestionChoice" %>
 
 <h2 class="multiple-choice-title">
     Choose the correct answer:
@@ -11,7 +11,16 @@
                class="k-radio" ${choice.id == answer.choice?.id ? 'checked' : ''}/>
         <label class="k-radio-label no-margin" for="choice_${choice?.id}">&#8203;</label>
         <label for="choice_${choice?.id}">
-            <div style="display: inline-block;vertical-align: middle"><format:html value="${choice?.name}"/></div>
+            <div style="display: inline-block;vertical-align: middle">
+                <g:if test="${QuestionTopic.findAllByQuestion(question)?.any {
+                    it.topic.name?.toLowerCase()?.contains('html')
+                }}">
+                    <pre>${choice?.name}</pre>
+                </g:if>
+                <g:else>
+                    <format:html value="${choice?.name}"/>
+                </g:else>
+            </div>
         </label>
     </div>
 </g:each>

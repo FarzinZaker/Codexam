@@ -14,6 +14,7 @@
     <asset:stylesheet src="flipclock.css"/>
     <asset:javascript src="highlight.pack.js"/>
     <asset:javascript src="flipclock.js"/>
+    <asset:javascript src="tinymce.min.js"/>
 </head>
 
 <body>

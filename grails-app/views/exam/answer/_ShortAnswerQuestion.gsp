@@ -1,16 +1,18 @@
 <h2>Type your answer</h2>
+<span class="k-widget k-tooltip k-tooltip-validation k-invalid-msg" style="display: none" data-for="answer" role="alert"
+      id="validatorMessage"><span class="k-icon k-i-warning"></span> Please type your answer first.</span>
 <span id="editorContainer">
-    <textarea type="text" class="k-textbox" name="answer" id="answer" style="width: 100%;height:300px;" required><format:html
+    <textarea type="text" class="k-textbox" name="answer" id="answer" style="width: 100%;height:300px;"><format:html
             value="${answer?.body}"/></textarea>
 </span>
 
 <script language="JavaScript">
     $(document).ready(function () {
-        if (tinymce.get("body"))
-            tinymce.get("body").remove();
+        if (tinymce.get("answer"))
+            tinymce.get("answer").remove();
 
         tinymce.init({
-            selector: 'textarea#body',
+            selector: 'textarea#answer',
             height: 500,
             menubar: false,
             plugins: [
@@ -38,4 +40,10 @@
             images_upload_url: '${createLink(controller: 'image', action:'upload')}'
         });
     });
+
+    function internalValidate() {
+        var tmp = document.createElement("DIV");
+        tmp.innerHTML = tinyMCE.activeEditor.getContent();
+        return (tmp.textContent || tmp.innerText) ? true : false
+    }
 </script>

@@ -57,13 +57,14 @@
                 }
             },
             batch: true,
-            pageSize: 20,
+            pageSize: 100,
             schema: {
                 data: 'data',
                 total: 'total',
                 model: {
                     id: "id",
                     fields: {
+                        rootTopic: {type: "string", validation: {required: true}},
                         topic: {type: "string", validation: {required: true}},
                         questionType: {type: "string", validation: {required: true}},
                         difficulty: {type: "string", validation: {required: true}},
@@ -77,7 +78,7 @@
                 }
             },
             group: {
-                field: "topic", aggregates: [
+                field: "rootTopic", aggregates: [
                     {field: "count", aggregate: "sum"},
                     {field: "maxTime", aggregate: "sum"}
                 ]
@@ -85,7 +86,7 @@
             aggregate: [
                 {field: "count", aggregate: "sum"},
                 {field: "maxTime", aggregate: "sum"}
-                ],
+            ],
             sort: [
                 {field: "questionType"},
                 {field: "difficulty"}
@@ -99,8 +100,11 @@
             toolbar: kendo.template($("#toolbarTemplate").html()),
             columns: [
                 {
-                    field: "topic", title: "Topic",
+                    field: "rootTopic", title: "", hidden: true,
                     groupHeaderTemplate: "#=value# (#=aggregates.count.sum#)"
+                },
+                {
+                    field: "topic", title: "Topic"
                 },
                 {field: "questionType", title: "Type"},
                 {field: "difficulty", title: "Diffuculty"},

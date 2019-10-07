@@ -1,2 +1,5 @@
 <h2>Answer</h2>
-<format:html value="${answer.body}"/>
+
+<div style="background: white;padding:15px;">
+    <format:html value="${answer.body}"/>
+</div>

@@ -35,10 +35,14 @@ class MarkController {
         def answers = Answer.findAllByExamSheetAndMarkIsNullAndDeleted(examSheet, false)?.findAll {
             it.answered
         }?.sort { it.sequence }
-        def answer = answers[examSheet.currentMarkingIndex - 1]
-        def question = answer.question
+        if (!answers.size())
+            redirect(controller: 'examSheet', action: 'list', id: examSheet?.examTemplate.id)
+        else {
+            def answer = answers.size() > examSheet.currentMarkingIndex - 1 ? answers[examSheet.currentMarkingIndex - 1] : null
+            def question = answer?.question
 
-        [examSheet: examSheet, answer: answer, answers: answers, question: question, totalQuestions: totalQuestions, currentQuestion: examSheet.currentMarkingIndex]
+            [examSheet: examSheet, answer: answer, answers: answers, question: question, totalQuestions: totalQuestions, currentQuestion: examSheet.currentMarkingIndex]
+        }
     }
 
     def next() {

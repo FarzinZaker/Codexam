@@ -86,12 +86,9 @@
         });
     });
 
-    function deleteApplicant(e) {
-        e.preventDefault();
-
-        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+    function deleteApplicant(id) {
         $.ajax({
-            url: '${createLink(action:'delete')}/' + dataItem.id
+            url: '${createLink(action:'delete')}/' + id
         }).done(function (response) {
             dataSource.read();
         });

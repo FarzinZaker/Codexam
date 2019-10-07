@@ -28,8 +28,12 @@ class QuestionFilterController {
         value.total = QuestionFilter.countByExamTemplateAndDeleted(examTemplate, false)
 
         value.data = list.collect {
+            def rootTopic = it.topic
+            while (rootTopic.parent?.parent)
+                rootTopic = rootTopic.parent
             [
                     id          : it.id,
+                    rootTopic   : rootTopic?.name,
                     topic       : it.topic?.name,
                     questionType: message(code: it.questionType),
                     difficulty  : it.difficulty?.name,
