@@ -27,6 +27,7 @@ class ApplicationController {
 
             if (ExamSheet.createCriteria().list {
                 applicant {
+                    eq('deleted', false)
                     or {
                         eq('email', params.email)
                         eq('skype', params.skype)
