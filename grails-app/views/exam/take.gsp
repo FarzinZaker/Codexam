@@ -12,7 +12,7 @@
     <title>${question?.title}</title>
     <asset:stylesheet src="styles/a11y-light.css"/>
     <asset:stylesheet src="flipclock.css"/>
-    <asset:javascript src="highlight.pack.js"/>
+%{--    <asset:javascript src="highlight.pack.js"/>--}%
     <asset:javascript src="flipclock.js"/>
     <asset:javascript src="tinymce.min.js"/>
 </head>
@@ -61,8 +61,8 @@
         </div>
     </div>
 </div>
-<script>
-    hljs.initHighlightingOnLoad();
-</script>
+%{--<script>--}%
+%{--    hljs.initHighlightingOnLoad();--}%
+%{--</script>--}%
 </body>
 </html>
