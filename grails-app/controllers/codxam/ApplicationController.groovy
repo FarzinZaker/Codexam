@@ -24,24 +24,24 @@ class ApplicationController {
                 redirect(action: 'apply', id: params.exam.code)
                 return
             }
-
-            if (ExamSheet.createCriteria().list {
-                applicant {
-                    eq('deleted', false)
-                    or {
-                        eq('email', params.email)
-                        eq('skype', params.skype)
-                    }
-                }
-                examTemplate {
-                    eq('uniqueId', params.exam.code)
-                }
-            }.size()) {
-                flash.message = "You have already taken this test. Each candidate can take the test only once."
-                redirect(action: 'apply', id: params.exam.code)
-                return
-            }
         }
+        if (ExamSheet.createCriteria().list {
+            eq('deleted', false)
+            applicant {
+                or {
+                    eq('email', params.email)
+                    eq('skype', params.skype)
+                }
+            }
+            examTemplate {
+                eq('uniqueId', params.exam.code)
+            }
+        }.size()) {
+            flash.message = "You have already taken this test. Each candidate can take the test only once."
+            redirect(action: 'apply', id: params.exam.code)
+            return
+        }
+
 
         def examSheet = null
         while (!examSheet) {
