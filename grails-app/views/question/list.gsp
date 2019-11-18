@@ -75,19 +75,30 @@
 
         grid = $("#grid").kendoGrid({
             dataSource: dataSource,
+            sortable: true,
             pageable: true,
             toolbar: kendo.template($("#toolbarTemplate").html()),
             columns: [
-                {field: "title", title: "Title"},
-                {field: "difficulty", title: "Diffuculty", width: "100px"},
-                {field: "type", title: "Type", width: "160px"},
-                {field: "timeLimit", title: "Time Limit", width: "110px"},
-                {field: "score", title: "Score", width: "80px"},
+                {field: "title", title: "Title", filterable: false},
+                {field: "difficulty", title: "Diffuculty", filterable: true},
+                {field: "type", title: "Type", filterable: true},
+                {
+                    field: "timeLimit", title: "Time Limit", width: "110px", filterable: false
+                },
+                {field: "score", title: "Score", width: "80px", filterable: false},
                 // {field: "topics", title: "Topics", width: "100px"},
                 // {field: "dateCreated", title: "Created", format: "{0:MM/dd/yyyy h:mm tt}"},
                 // {field: "lastUpdated", title: "Updated", format: "{0:MM/dd/yyyy h:mm tt}"},
-                {command: [{text: "Edit", click: editQuestion}, "destroy"], title: " ", width: "230px"}
+                {
+                    command: [{text: "Edit", click: editQuestion}, "destroy"],
+                    title: " ",
+                    width: "230px",
+                    filterable: false
+                }
             ],
+            filterable: {
+                mode: "row"
+            },
             editable: "popup",
             edit: function (e) {
                 $(e.container).find('input[type="checkbox"]').addClass('k-checkbox');

@@ -26,6 +26,7 @@ class QuestionFilterService {
                     eq('difficulty', filter.difficulty)
                     lte('timeLimit', filter.maxTime)
                     gt('timeLimit', 0)
+                    eq('deleted', false)
                 }
                 projections {
                     property('question')
@@ -64,6 +65,7 @@ class QuestionFilterService {
                     eq('difficulty', filter.difficulty)
                     lte('timeLimit', filter.maxTime)
                     gt('timeLimit', 0)
+                    eq('deleted', false)
                 }
                 projections {
                     property('question')
